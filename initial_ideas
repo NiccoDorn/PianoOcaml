@@ -3,5 +3,5 @@ Building an Encoding-Machine for Classical Piano Pieces
 MIDI encoding for notes: 0-127  => Binary
 Duration Encoding for Notes: Binary from {1/32, 1/16, 1/8, ¼, ½ , 1, 2}
 Mode Encoding for Notes: Binary from {0, 1, 2} for {Legato, Normal Touch, Staccato} for simplicity
-Loudness: Binary from {Piano Pianissimo, Pianissimo, Piano, Mezzo Piano, Mezzo Forte, Forte, Fortissimo, Forte}
+Loudness: Binary from {Piano Pianissimo, Pianissimo, Piano, Mezzo Piano, Mezzo Forte, Forte, Fortissimo, Forte Fortissimo}
 Note Pedaling: Binary from {Sustain Pedal, Soft Pedal, Sostenuto Pedal}
