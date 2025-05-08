@@ -1,7 +1,20 @@
 Building an Encoding-Machine for Classical Piano Pieces
 
-MIDI encoding for notes: 0-127  => Binary
-Duration Encoding for Notes: Binary from {1/32, 1/16, 1/8, ¼, ½ , 1, 2}
-Mode Encoding for Notes: Binary from {0, 1, 2} for {Legato, Normal Touch, Staccato} for simplicity
-Loudness: Binary from {Piano Pianissimo, Pianissimo, Piano, Mezzo Piano, Mezzo Forte, Forte, Fortissimo, Forte Fortissimo}
-Note Pedaling: Binary from {Sustain Pedal, Soft Pedal, Sostenuto Pedal}
+MIDI: MIDI encoding for notes: 0-127 mapping => Binary as Byte
+D: Duration Encoding for Notes: Binary from {1/32, 1/16, 1/8, ¼, ½ , 1, 2, 4} 8 States (4 bits)
+M: Mode Encoding for Notes: Binary from {0, 1, 2} for {Legato, Normal Touch, Staccato} : 3 states (2 bits)
+L: Loudness: Binary from {Piano Pianissimo, Pianissimo, Piano, Mezzo Piano, Mezzo Forte, Forte, Fortissimo, Forte Fortissimo}: 8 states (4 bits)
+NP: Note Pedaling: Binary from {Sustain Pedal, Soft Pedal, Sostenuto Pedal}: 3 states (2 bits)
+
+Structure: Vector of Binary Strings (Words or Half-Words), each of length 16 bits (Integer) with Sections
+0b{MIDI}{M}{L}{NP} => 8 + 4 + 2 + 4 + 2 = 20 bits, allows for bit hacks to get the exact values for each tact
+=> What about alignment for beat reading
+=> What about chords & trills & Left Hand vs. Right Hand
+
+Chords: Additional Timing Information in this case: Beat-Encoding / Fraction of a Beat recording, using the smallest duration as a reference
+Every note is then annotated with the current fractional beat timestamp. Consideration about shortest fractional beat and overall duration
+Left / Right Hand: Two "Tapes"
+
+High-Level Representation in Ocaml: Records with Types or Labelled Tupled Expression
+Every Musical Piece is a finite sequence of notes, so implementation as stream questionable.
+Imagining Radio Setting with continuous Piano Play, then a stream makes sense.
